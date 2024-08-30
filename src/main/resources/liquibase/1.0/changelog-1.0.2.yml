@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create passports table
+      author: Rashad Amanov
+      changes:
+        - createTable:
+            tableName: passports
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: passport_number
+                  type: VARCHAR(64)
+              - column:
+                  name: issue_date
+                  type: DATE
+              - column:
+                  name: expiry_date
+                  type: DATE
+              - column:
+                  name: country
+                  type: VARCHAR(64)
+        - addForeignKeyConstraint:
+            baseTableName: passports
+            baseColumnNames: id
+            referencedTableName: guides
+            referencedColumnNames: id
+            constraintName: fk_passport_guide

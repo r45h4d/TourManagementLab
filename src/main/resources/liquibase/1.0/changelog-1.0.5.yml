@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create tour_guide table
+      author: Rashad Amanov
+      changes:
+        - createTable:
+            tableName: tour_guide
+            columns:
+              - column:
+                  name: tour_id
+                  type: BIGINT
+              - column:
+                  name: guide_id
+                  type: BIGINT
+              - column:
+                  name: start_date
+                  type: DATE
+        - addPrimaryKey:
+            columnNames: tour_id, guide_id
+            constraintName: pk_tour_guide
+            tableName: tour_guide
+        - addForeignKeyConstraint:
+            baseTableName: tour_guide
+            baseColumnNames: tour_id
+            referencedTableName: tours
+            referencedColumnNames: id
+            constraintName: fk_tour_guide_tours
+        - addForeignKeyConstraint:
+            baseTableName: tour_guide
+            baseColumnNames: guide_id
+            referencedTableName: guides
+            referencedColumnNames: id
+            constraintName: fk_tour_guide_guides
+        - addUniqueConstraint:
+            columnNames: guide_id, start_date
+            constraintName: uq_tour_guide_guide_id_start_date
+            tableName: tour_guide
