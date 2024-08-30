@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create guides tables
+      author: Rashad Amanov
+      changes:
+        - createTable:
+            tableName: guides
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(64)
+              - column:
+                  name: email
+                  type: VARCHAR(64)
+              - column:
+                  name: phone_number
+                  type: VARCHAR(32)

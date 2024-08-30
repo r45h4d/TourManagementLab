@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create travelers table
+      author: Rashad Amanov
+      changes:
+        - createTable:
+            tableName: travelers
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: first_name
+                  type: VARCHAR(64)
+              - column:
+                  name: last_name
+                  type: VARCHAR(64)
+              - column:
+                  name: email
+                  type: VARCHAR(64)

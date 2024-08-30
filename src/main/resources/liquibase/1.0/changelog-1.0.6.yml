@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create tour_traveler table
+      author: Rashad Amanov
+      changes:
+        - createTable:
+            tableName: tour_traveler
+            columns:
+              - column:
+                  name: tour_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: traveler_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            constraintName: uq_tour_traveler
+            tableName: tour_traveler
+            columnNames: tour_id, traveler_id
+        - addForeignKeyConstraint:
+            constraintName: fk_tour
+            baseTableName: tour_traveler
+            baseColumnNames: tour_id
+            referencedTableName: tours
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            constraintName: fk_traveler
+            baseTableName: tour_traveler
+            baseColumnNames: traveler_id
+            referencedTableName: travelers
+            referencedColumnNames: id
